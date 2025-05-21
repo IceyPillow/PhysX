@@ -60,6 +60,11 @@ for /f "usebackq tokens=*" %%i in (`"%PM_vswhere_PATH%\VsWhere.exe  -version [15
 for /f "usebackq tokens=*" %%i in (`"%PM_vswhere_PATH%\VsWhere.exe  -version [16.0,17.0) -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath"`) do (
   set Install2019Dir=%%i
 	set VS160PATH="%%i"	
+)
+
+for /f "usebackq tokens=*" %%i in (`"%PM_vswhere_PATH%\VsWhere.exe  -version [17.0,18.0) -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath"`) do (
+  set Install2022Dir=%%i
+	set VS170PATH="%%i"	
 )	
 
 if exist "%Install2017Dir%\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.txt" (
@@ -86,6 +91,18 @@ if exist "%Install2019Dir%\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.t
   popd
 )
 
+if exist "%Install2022Dir%\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.txt" (
+  pushd "%Install2022Dir%\VC\Auxiliary\Build\"
+  set /p Version=<Microsoft.VCToolsVersion.default.txt
+  for /f "delims=" %%x in (Microsoft.VCToolsVersion.default.txt) do (
+	if not %%x=="" (
+	  rem Example hardcodes x64 as the host and target architecture, but you could parse it from arguments
+	  set VS170CLPATH="%Install2022Dir%\VC\Tools\MSVC\%%x\bin\HostX64\x64\cl.exe"
+	)
+  )  
+  popd
+)
+
 :ADDITIONAL_PARAMS_MISSING
 pushd %~dp0
 %PM_PYTHON% "%PHYSX_ROOT_DIR%/buildtools/cmake_generate_projects.py" %1
@@ -94,8 +111,12 @@ if %ERRORLEVEL% neq 0 (
     set /p DUMMY=Hit ENTER to continue...
     exit /b %errorlevel%
 ) else (
-    goto CLEAN_EXIT
+    goto CLEAN_EXIT_PAUSE
 )
 
 :CLEAN_EXIT
+exit /b 0
+
+:CLEAN_EXIT_PAUSE
+@pause
 exit /b 0

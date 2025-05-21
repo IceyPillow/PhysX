@@ -130,10 +130,6 @@ class CMakePreset:
                 if os.environ.get('PM_CUDA_PATH') is not None:
                     outString = outString + ' -DCUDA_TOOLKIT_ROOT_DIR=' + \
                         os.environ['PM_CUDA_PATH']
-                if self.compiler == 'vc15':
-                    print('VS15CL:' + os.environ['VS150CLPATH'])
-                    outString = outString + ' -DCUDA_HOST_COMPILER=' + \
-                        os.environ['VS150CLPATH']
                 if self.compiler == 'vc16':
                     print('VS16CL:' + os.environ['VS160CLPATH'])
                     outString = outString + ' -DCUDA_HOST_COMPILER=' + \
@@ -149,14 +145,8 @@ class CMakePreset:
 
     def getPlatformCMakeParams(self):
         outString = ' '
-        if self.compiler == 'vc12':
-            outString = outString + '-G \"Visual Studio 12 2013\"'
-        elif self.compiler == 'vc14':
-            outString = outString + '-G \"Visual Studio 14 2015\"'
-        elif self.compiler == 'vc15':
-            outString = outString + '-G \"Visual Studio 15 2017\"'
-        elif self.compiler == 'vc16':
-            outString = outString + '-G \"Visual Studio 16 2019\"'
+        if self.compiler == 'vc17':
+            outString = outString + '-G \"Visual Studio 17 2022\"'
         elif self.compiler == 'xcode':
             outString = outString + '-G Xcode'
         elif self.targetPlatform == 'android':
