@@ -1,0 +1,1 @@
+bin\VC17WIN64\RELEASE\KaplaDemo -fxaa -nbThreads 8 -nogrb
