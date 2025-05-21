@@ -1,0 +1,3 @@
+﻿cl : command line  warning D9025: overriding '/Od' with '/Ox'
+  glew.c
+  glew-MT.vcxproj -> D:\Github\PhysX\kaplademo\externals\glew-1.13.0\lib\win64\glew_release.lib
