@@ -15,3 +15,8 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+x64
+win64
+include
+*_bin
+vc17win64
