@@ -1,5 +1,20 @@
 # PhysX 4.1 (Special Version for Games)
 
+## How to compile for Windows & Android
+1. Download Android NDK from here [NDK R11C Win64](https://dl.google.com/android/repository/android-ndk-r11c-windows-x86_64.zip), unpack and place it in the root folder
+2. Run **generate_projects.bat** and choose a cross-compilation platform (I already added them in)
+3. Go to **physx\compiler**, run cmake **--build ./SOLUTION_FOLDER_NAME**, for instance:
+   > cmake --build ./OnlyStatic-vc17win64 --config checked --clean-first -j 20
+   > 
+   > cmake --build ./OnlyStatic-vc17win64 --config release --clean-first -j 20
+   > 
+   > cmake --build ./OnlyStatic-android-arm64-v8a-checked --clean-first -j 20
+   >
+   > cmake --build ./OnlyStatic-android-arm64-v8a-release --clean-first -j 20
+4. Strip debug info to reduce the package size, for instance:
+   > llvm-strip checked\\\*.a release\\\*.a -g
+5. Find the static libraries in **physx\bin**
+
 ## PhysX 5 Now Available
 
 The NVIDIA PhysX SDK version 5 is now available [here](https://github.com/NVIDIA-Omniverse/PhysX).
@@ -34,7 +49,3 @@ Requirements:
 To begin, clone this repository onto your local drive.  Then change directory to physx/, run ./generate_projects.[bat|sh] and follow on-screen prompts.  This will let you select a platform specific solution to build.  You can then open the generated solution file with your IDE and kick off one or more configuration builds.
 
 To build and run the Kapla Demo see [kaplademo/README.md](kaplademo/README.md).
-
-## Acknowledgements
-
-This depot contains external third party open source software copyright their respective owners.  See [kaplademo/README.md](kaplademo/README.md) and [externals/README.md](externals/README.md) for details.
