@@ -20,3 +20,5 @@ win64
 include
 *_bin
 vc17win64
+android-ndk-r11c
+OnlyStatic-vc17win64
