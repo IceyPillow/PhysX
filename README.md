@@ -12,7 +12,9 @@
    >
    > cmake --build ./OnlyStatic-android-arm64-v8a-release --clean-first -j 20
 4. Strip debug info to reduce the package size, for instance:
-   > llvm-strip checked\\\*.a release\\\*.a -g
+   > strip -g libPhysX_static.a
+   >
+   > (Location: android-ndk-r11c\toolchains\aarch64-linux-android-4.9\prebuilt\windows-x86_64\aarch64-linux-android\strip.exe)
 5. Find the static libraries in **physx\bin**
 
 ## PhysX 5 Now Available
