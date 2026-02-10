@@ -264,7 +264,7 @@ class CMakePreset:
             outString = outString + ' -DCMAKE_TOOLCHAIN_FILE=' + \
                 os.environ['PM_CMakeModules_PATH'] + \
                 '/android/android.toolchain.cmake'
-            outString = outString + ' -DANDROID_STL=\"gnustl_static\"'
+            outString = outString + ' -DANDROID_STL=\"gnustl_static\"' # Pillow: This specifies the Android C++ library.
             outString = outString + ' -DCM_ANDROID_FP=\"softfp\"'
             if os.environ.get('PM_AndroidNDK_PATH') is None:
                 print('Please provide path to android NDK in variable PM_AndroidNDK_PATH.')
