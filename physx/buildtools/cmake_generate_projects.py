@@ -374,7 +374,7 @@ def presetProvided(pName):
         os.chdir(os.environ['PHYSX_ROOT_DIR'])
     else:
         # configs = ['debug', 'checked', 'profile', 'release']
-        configs = ['checked', 'release']
+        configs = ['checked', 'release'] # Pillow: Only enable these two configs for Android
         for config in configs:
             # cleanup and create output directory
             outputDir = os.path.join('compiler', parsedPreset.presetName + '-' + config)

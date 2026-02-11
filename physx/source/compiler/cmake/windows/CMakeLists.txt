@@ -50,7 +50,9 @@ SET(PHYSX_CXX_FLAGS_DEBUG "/Od ${WINCRT_DEBUG} /RTCu /Zi" CACHE INTERNAL "PhysX 
 # PT: changed /Ox to /O2 because "the /Ox compiler option enables only a subset of the speed optimization options enabled by /O2."
 # See https://docs.microsoft.com/en-us/cpp/build/reference/ox-full-optimization?view=vs-2019
 # SET(PHYSX_CXX_FLAGS_CHECKED "/O2 ${WINCRT_NDEBUG} /Zi" CACHE INTERNAL "PhysX Checked CXX Flags")
-SET(PHYSX_CXX_FLAGS_CHECKED "/O2 ${WINCRT_DEBUG} /Zi" CACHE INTERNAL "PhysX Checked CXX Flags") # Pillow: Enable CRT debug for checked config
+ # Pillow: Enable CRT debug for checked config.
+ # CRT_DEBUG_FLAG == "/D \"_DEBUG\"" (externals\cmakemodules\NvidiaBuildOptions.cmake)
+SET(PHYSX_CXX_FLAGS_CHECKED "/O2 ${WINCRT_DEBUG} /Zi" CACHE INTERNAL "PhysX Checked CXX Flags")
 SET(PHYSX_CXX_FLAGS_PROFILE "/O2 ${WINCRT_NDEBUG} /Zi" CACHE INTERNAL "PhysX Profile CXX Flags")
 SET(PHYSX_CXX_FLAGS_RELEASE "/O2 ${WINCRT_NDEBUG} /Zi" CACHE INTERNAL "PhysX Release CXX Flags")
 
